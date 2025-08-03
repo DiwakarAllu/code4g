@@ -24,7 +24,7 @@ Link: https://leetcode.com/problems/pascals-triangle/description/
         return ans;
     }
 }
----------------------------------------------------------
+-------------------------------------------------------------
   class Solution { ------> O(n^3)
     static int ncr(int n,int r){
         int res=1;
