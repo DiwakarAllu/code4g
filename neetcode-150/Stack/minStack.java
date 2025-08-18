@@ -1,5 +1,43 @@
 class MinStack {
     Stack<Integer>st;
+    int mini = Integer.MAX_VALUE;
+  
+    public MinStack() {
+        st=new Stack<>();
+       
+    }
+    
+    public void push(int val) {
+      if(val<=mini){
+        st.push(mini); // Saving the old minimum when a new minimum (or duplicate) is pushed
+        mini=val;
+      }
+      st.push(val);
+    }
+    
+    public void pop() {
+        if(!st.isEmpty()){
+           int x = st.pop();
+           if(x == mini){
+             mini=st.pop(); // Restoring the previous minimum when the current minimum is popped.
+           }
+        }
+    }
+    
+    public int top() {
+        if(st.isEmpty()) return Integer.MIN_VALUE;
+        return st.peek();
+    }
+    
+    public int getMin() {
+        return mini;
+        
+    }
+}
+
+
+class MinStack {
+    Stack<Integer>st;
     Stack<Integer>min_st;
     public MinStack() {
         st=new Stack<>();
