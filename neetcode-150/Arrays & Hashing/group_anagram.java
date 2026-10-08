@@ -1,5 +1,35 @@
 class Solution {
 
+    public List<List<String>> groupAnagrams_new(String[] strs) {
+
+        // Map<StringBuilder,List<String>> mp = new HashMap<>(); -----> why not sb ==> StringBuilder does not override equals() and hashCode() based on its contents.
+        Map<String,List<String>> mp = new HashMap<>();
+
+        for(String s: strs){
+
+            int[] arr = new int[26];
+            for(char c:s.toCharArray()){
+                arr[c-'a']++;
+             }
+
+            StringBuilder key1 = new StringBuilder();
+             for(int i:arr){
+                key1.append("*");
+                key1.append(i);
+           
+             }
+             String key = key1.toString();
+
+             if(mp.containsKey(key)){
+                mp.get(key).add(s);
+             }else{
+                mp.put(key, new ArrayList<>(List.of(s))); // why list.of(s) ---> new ArrayList<>("eat")            // x String is not a Collection
+             }
+             
+        }
+        return  new ArrayList<>(mp.values());
+    }
+
     public List<List<String>> groupAnagrams(String[] strs) {
         HashMap<String,List<String>>map=new HashMap<>();
         int n=strs.length;
